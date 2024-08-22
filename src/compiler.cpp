@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <iostream>
+#include "../include/lexer.h"
 
 int main(int argc, char *argv[])
 {
-    std::cout << "Hello World";
+    Lexer new_lexer("test");
 
     return 0;
 }
