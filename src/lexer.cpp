@@ -33,3 +33,47 @@ void Lexer::next_char()
         this->current_char = this->source[this->current_pos];
     }
 }
+
+Token Lexer::get_token()
+{
+    string current_char_to_string(1, this->current_char);
+    string next_char_to_string(1, this->peek());
+    Token token;
+
+    if (this->current_char == '+')
+    {
+        token = Token(current_char_to_string, Plus);
+    }
+    else if (this->current_char == '-')
+    {
+        token = Token(current_char_to_string, Minus);
+    }
+    else if (this->current_char == '*')
+    {
+        token = Token(current_char_to_string, Asterisk);
+    }
+    else if (this->current_char == '/')
+    {
+        token = Token(current_char_to_string, Slash);
+    }
+    else if (this->current_char == '\n')
+    {
+        token = Token(current_char_to_string, Newline);
+    }
+    else if (this->current_char == '\0')
+    {
+        token = Token(current_char_to_string, Eof);
+    }
+    else
+    {
+    }
+
+    this->next_char();
+    return token;
+}
+
+Token::Token(string text, Token_type kind)
+{
+    this->token_text = text;
+    this->kind = kind;
+}
