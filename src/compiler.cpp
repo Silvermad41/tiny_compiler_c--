@@ -4,15 +4,14 @@
 
 int main(int argc, char *argv[])
 {
-    Lexer new_lexer("+- */");
+    Lexer new_lexer("+- */ >>= = !=");
 
     Token token = new_lexer.get_token();
 
-    token = new_lexer.get_token();
-
-    if (token.kind == Minus)
+    while (token.kind != Token_type::Eof)
     {
-        std::cout << token.kind;
+        std::cout << TokenTypeToString(token.kind) << ",\n ";
+        token = new_lexer.get_token();
     }
 
     return 0;

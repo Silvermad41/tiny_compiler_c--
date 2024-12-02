@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <limits.h>
+#include <map>
 
 using namespace std;
 
@@ -25,7 +27,7 @@ enum Token_type
     Endif = 108,
     While = 109,
     Repeat = 110,
-    Endwhile = 111,
+    Endwhile = 11,
     Eq = 201,
     Plus = 202,
     Minus = 203,
@@ -38,6 +40,36 @@ enum Token_type
     Gt = 210,
     Gteq = 211,
 };
+
+map<Token_type, string> TokenTypeStrings = {{Eof, "EOF"},
+                                            {Newline, "NEWLINE"},
+                                            {Number, "NUMBER"},
+                                            {Ident, " IDENT"},
+                                            {String, "STRING"},
+                                            {Label, "LABEL"},
+                                            {Goto, "GOTO"},
+                                            {Print, "PRINT"},
+                                            {Input, "INPUT"},
+                                            {Let, "LET"},
+                                            {If, "IF"},
+                                            {Then, "THEN"},
+                                            {Endif, "ENDIF"},
+                                            {While, "WHILE"},
+                                            {Repeat, "REPEAT"},
+                                            {Endwhile, "ENDWHILE"},
+                                            {Eq, "EQ"},
+                                            {Plus, "PLUS"},
+                                            {Minus, "MINUS"},
+                                            {Asterisk, "ASTERISK"},
+                                            {Slash, "SLASH"},
+                                            {Eqeq, "EQEQ"},
+                                            {noteq, "NOTEQ"},
+                                            {Lt, "LT"},
+                                            {Lteq, "LTEQ"},
+                                            {Gt, "GT"},
+                                            {Gteq, "GTEQ"}};
+
+string TokenTypeToString(Token_type);
 
 class Token
 {
@@ -61,7 +93,7 @@ public:
 private:
     char current_char;
     long unsigned int current_pos;
-    void abort();
+    void abort(string);
     void skip_whitespace();
     void skip_comment();
 };
