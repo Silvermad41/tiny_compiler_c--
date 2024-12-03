@@ -3,10 +3,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <string>
+#include <string.h>
 #include <iostream>
 #include <limits.h>
 #include <map>
+#include <ctype.h>
 
 using namespace std;
 
@@ -41,35 +42,9 @@ enum Token_type
     Gteq = 211,
 };
 
-map<Token_type, string> TokenTypeStrings = {{Eof, "EOF"},
-                                            {Newline, "NEWLINE"},
-                                            {Number, "NUMBER"},
-                                            {Ident, " IDENT"},
-                                            {String, "STRING"},
-                                            {Label, "LABEL"},
-                                            {Goto, "GOTO"},
-                                            {Print, "PRINT"},
-                                            {Input, "INPUT"},
-                                            {Let, "LET"},
-                                            {If, "IF"},
-                                            {Then, "THEN"},
-                                            {Endif, "ENDIF"},
-                                            {While, "WHILE"},
-                                            {Repeat, "REPEAT"},
-                                            {Endwhile, "ENDWHILE"},
-                                            {Eq, "EQ"},
-                                            {Plus, "PLUS"},
-                                            {Minus, "MINUS"},
-                                            {Asterisk, "ASTERISK"},
-                                            {Slash, "SLASH"},
-                                            {Eqeq, "EQEQ"},
-                                            {noteq, "NOTEQ"},
-                                            {Lt, "LT"},
-                                            {Lteq, "LTEQ"},
-                                            {Gt, "GT"},
-                                            {Gteq, "GTEQ"}};
-
 string TokenTypeToString(Token_type);
+Token_type &operator++(Token_type &);
+bool check_if_keyword(string, Token_type *);
 
 class Token
 {

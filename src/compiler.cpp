@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    Lexer new_lexer("+- */ >>= = !=");
+    Lexer new_lexer("IF+-123 foo*THEN/");
 
     Token token = new_lexer.get_token();
 
